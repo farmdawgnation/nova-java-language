@@ -1,0 +1,13 @@
+{
+    "identifier": "me.frmr.JavaLanguage",
+    "name": "Java Language Definition",
+    "organization": "Matt Farmer",
+    "description": "Minimal, straightforward Java language highlighting for Nova.",
+    "version": "1.0",
+    "categories": ["languages"],
+    "repository": "https://github.com/farmdawgnation/nova-java-language",
+    "homepage": "https://github.com/farmdawgnation/nova-java-language",
+    "bugs": {
+        "url": "https://github.com/farmdawgnation/nova-java-language/issues"
+    }
+}

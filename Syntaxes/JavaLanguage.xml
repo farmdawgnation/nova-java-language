@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="java">
+    <meta>
+        <name>Java</name>
+        <type>structured</type>
+        <preferred-file-extension>java</preferred-file-extension>
+    </meta>
+    
+    <detectors>
+        <extension priority="1.0">java</extension>
+    </detectors>
+    
+    <indentation>
+        <increase>
+            <expression>{</expression>
+        </increase>
+        <decrease>
+            <expression>}</expression>
+        </decrease>
+    </indentation>
+    
+    <comments>
+        <!-- <multiline>
+            <starts-with>
+                <expression>/*</expression>
+            </starts-with>
+            <ends-with>
+                <expression>*/</expression>
+            </ends-with>
+        </multiline>
+        <single>
+            <expression>//</expression>
+        </single> -->
+    </comments>
+    
+    <brackets>
+        <pair open="{" close="}" />
+    </brackets>
+    
+    <surrounding-pairs>
+        <pair open="[" close="]" />
+        <pair open="(" close=")" />
+        <pair open="&quot;" close="&quot;" />
+        <pair open="&apos;" close="&apos;" />
+    </surrounding-pairs>
+    
+    <scopes>
+        <scope name="java.single.comment">
+            <starts-with>
+                <expression>//</expression>
+            </starts-with>
+            <ends-with>
+                <expression>$</expression>
+            </ends-with>
+        </scope>
+        
+        <scope name="java.comment.block" spell-check="true">
+            <starts-with>
+                <expression>/\*</expression>
+            </starts-with>
+            <ends-with>
+                <expression>\*/$</expression>
+            </ends-with>
+            <subscopes>
+                <scope name="java.javadoc.param">
+                    <expression>.*(@[a-z]+) .*$</expression>
+                    <capture number="1" name="java.javadoc.identifier.key" />
+                </scope>
+            </subscopes>
+        </scope>
+        
+        <scope name="java.import.statement">
+            <expression>\s*(import)\s([a-z][A-Z0-9a-z\._]+)\.([A-Za-z0-9_]+|\*);</expression>
+            <capture number="1" name="java.keyword" />
+            <capture number="2" name="java.identifier.type" />
+            <capture number="3" name="java.identifier.type" />
+        </scope>
+        
+        <include syntax="self" collection="classname" />
+
+        <!-- Values -->
+        <include syntax="self" collection="values" />
+        
+        <include syntax="self" collection="keywords" />
+    </scopes>
+    
+    <collections>
+        <collection name="values">
+            <include syntax="self" collection="strings" />
+            <include syntax="self" collection="numbers" />
+            <include syntax="self" collection="boolean" />
+        </collection>
+        <collection name="strings">
+            <scope name="java.string">
+                <expression>&quot;.*&quot;</expression>
+            </scope>
+            <scope name="java.string">
+                <expression>&apos;.*&apos;</expression>
+            </scope>
+        </collection>
+        <collection name="numbers">
+            <scope name="java.numexp">
+                <expression>({|\s|\(|\[)([0-9\.]+(f|d|l|L)?)(?=\s|;|\)|\]|,|}|:)</expression>
+                <capture number="2" name="java.value.number" />
+            </scope>
+        </collection>
+        <collection name="boolean">
+            <scope name="java.value.boolean">
+                <strings>
+                    <string>true</string>
+                    <string>false</string>
+                </strings>
+            </scope>
+        </collection>
+        <collection name="classname">
+            <scope name="java.classname">
+                <expression>(\s|\(|\.|&lt;)([A-Z][A-Za-z0-9_]+)</expression>
+                <capture number="2" name="java.identifier.type" />
+            </scope>
+            <scope name="java.classinvocation">
+                <expression>(\.([a-z][A-Za-z0-9_]+))(?=\s?\(|\.)</expression>
+                <capture number="2" name="java.identifier.method" />
+            </scope>
+        </collection>
+        <collection name="keywords">
+            <scope name="java.keyword">
+                <strings>
+                    <string>abstract</string>
+                    <string>continue</string>
+                    <string>for</string>
+                    <string>new</string>
+                    <string>switch</string>
+                    <string>assert</string>
+                    <string>default</string>
+                    <string>goto</string>
+                    <string>package</string>
+                    <string>synchronized</string>
+                    <string>boolean</string>
+                    <string>do</string>
+                    <string>if</string>
+                    <string>private</string>
+                    <string>this</string>
+                    <string>break</string>
+                    <string>double</string>
+                    <string>implements</string>
+                    <string>protected</string>
+                    <string>throw</string>
+                    <string>byte</string>
+                    <string>else</string>
+                    <string>import</string>
+                    <string>public</string>
+                    <string>throws</string>
+                    <string>case</string>
+                    <string>enum</string>
+                    <string>instanceof</string>
+                    <string>return</string>
+                    <string>transient</string>
+                    <string>catch</string>
+                    <string>extends</string>
+                    <string>int</string>
+                    <string>short</string>
+                    <string>try</string>
+                    <string>char</string>
+                    <string>final</string>
+                    <string>interface</string>
+                    <string>static</string>
+                    <string>void</string>
+                    <string>class</string>
+                    <string>finally</string>
+                    <string>long</string>
+                    <string>strictfp</string>
+                    <string>volatile</string>
+                    <string>const</string>
+                    <string>float</string>
+                    <string>native</string>
+                    <string>super</string>
+                    <string>while</string>
+                    <string>var</string>
+                    <string>_</string>
+                </strings>
+            </scope>
+        </collection>
+    </collections>
+</syntax>
