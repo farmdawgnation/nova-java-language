@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="java-properties">
+  <meta>
+    <name>Java Properties</name>
+    <type>structured</type>
+    <preferred-file-extension>properties</preferred-file-extension>
+  </meta>
+
+  <detectors>
+    <extension priority="1.0">properties</extension>
+  </detectors>
+
+  <comments>
+    <single>
+      <expression>#</expression>
+    </single>
+  </comments>
+
+  <scopes>
+    <scope name="java-properties.key-value">
+      <expression>^\s*([^#!](?:[^=:]|\\\s[^=:])+)\s*([=:])?\s*(.*)$</expression>
+      <capture number="1" name="java-properties.identifier.key" />
+      <capture number="2" name="java-properties.operator" />
+      <capture number="3" name="java-properties.value" />
+    </scope>
+
+    <scope name="java-properties.key-without-value">
+      <expression>^\s*([^#!](?:[^=:]|\\\s[^=:])+)\s*([=:])$</expression>
+      <capture number="1" name="java-properties.identifier.key" />
+      <capture number="2" name="java-properties.operator" />
+    </scope>
+
+    <scope name="java-properties.comment">
+      <expression>^\s*[#!]\s*(.*)$</expression>
+      <capture number="1" name="java-properties.comment.text" />
+    </scope>
+  </scopes>
+</syntax>
