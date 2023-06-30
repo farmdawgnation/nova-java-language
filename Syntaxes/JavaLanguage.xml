@@ -92,10 +92,10 @@
         </collection>
         <collection name="strings">
             <scope name="java.string">
-                <expression>&quot;.*&quot;</expression>
+                <expression>&quot;([^\\&quot;]|\\[^&quot;]|[^\\]?(\\\\)*\\&quot;)*&quot;</expression>
             </scope>
             <scope name="java.string">
-                <expression>&apos;.*&apos;</expression>
+                <expression>&apos;\\?.&apos;</expression>
             </scope>
         </collection>
         <collection name="numbers">
