@@ -20,17 +20,17 @@
     </indentation>
     
     <comments>
-        <!-- <multiline>
+        <multiline>
             <starts-with>
-                <expression>/*</expression>
+                <expression>/\*</expression>
             </starts-with>
             <ends-with>
-                <expression>*/</expression>
+                <expression>\*/</expression>
             </ends-with>
         </multiline>
         <single>
             <expression>//</expression>
-        </single> -->
+        </single>
     </comments>
     
     <brackets>
